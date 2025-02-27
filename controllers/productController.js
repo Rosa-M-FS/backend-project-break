@@ -155,7 +155,7 @@ const productController = {
         }
     },
 }
-module.exports = { 
+/* module.exports = { 
     showProducts,
     showProductById,
     showNewProduct,
@@ -164,3 +164,5 @@ module.exports = {
     updateProduct,
     deleteProduct
 };
+ */
+module.exports=productController;
