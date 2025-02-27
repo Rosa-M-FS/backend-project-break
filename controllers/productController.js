@@ -156,3 +156,13 @@ const productController = {
         }
     },
 }
+
+module.exports ={
+    showProduct,
+    showProductById,
+    showNewProduct,
+    createProduct,
+    showEditProduct,
+    updateProduct,
+    deleteProduct
+}
