@@ -157,7 +157,7 @@ const productController = {
     },
 }
 
-module.exports ={
+module.exports ={ 
     showProduct,
     showProductById,
     showNewProduct,
