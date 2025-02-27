@@ -157,4 +157,4 @@ const productController = {
     },
 }
 
-module.exports={productController,baseHtml};
+module.exports={productController};
