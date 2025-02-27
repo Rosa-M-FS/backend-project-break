@@ -1,4 +1,3 @@
-const Product = require('../models/Product');
 const productModel=require('../models/Product');
 
 const getProductCards=(products)=>{
@@ -52,7 +51,7 @@ const baseHtml=(content,inDashboard=false)=>{`
     `;
 }
 const productController = {
-    async showProduct (req,res){
+    async showProducts (req,res){
         try{
             const products = await productModel.find();
             const productCards = getProductCards(products);
@@ -156,13 +155,12 @@ const productController = {
         }
     },
 }
-
-module.exports ={ 
-    showProduct,
+module.exports = { 
+    showProducts,
     showProductById,
     showNewProduct,
     createProduct,
     showEditProduct,
     updateProduct,
     deleteProduct
-}
+};
