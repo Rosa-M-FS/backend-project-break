@@ -1,34 +1,6 @@
 const productModel=require('../models/Product');
-const baseHtml=require('../public/views');
+const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 
-const getProductCards=(products)=>{
-    let html='';
-    for (let product of products){
-        html+=`
-            <div class="product-card">
-                <img src="${product.image}" alt="${product.name}">
-                <h2>${product.name}</h2>
-                <p>${product.description}</p>
-                <p>${product.price}€</p>
-                <a href="/products/${product._id}">Ver detalle</a>
-            </div>
-        `;
-    }
-    return html;
-}
-
-const getNavBar=(indashboard=false)=>{
-    let html=`
-        <nav class="navBar">
-            <a href="/">Home</a>
-            <a href="/products">Products</a>
-            <a href="/contact">contact</a>
-
-        ${indashboard ? `<a href="/dashboard/new" class="newP-btn"> Añadir Producto</a>`: ''}
-        </nav>
-        `;
-    return html;
-}
 
 const productController = {
     async showProducts (req,res){
