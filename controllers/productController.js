@@ -1,4 +1,5 @@
 const productModel=require('../models/Product');
+const baseHtml=require('../public/views');
 
 const getProductCards=(products)=>{
     let html='';
@@ -29,28 +30,6 @@ const getNavBar=(indashboard=false)=>{
     return html;
 }
 
-const baseHtml=(content,inDashboard=false)=>{
-    return`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rose's Shop</title>
-        <link rel="stylesheet" href="/styles.css">
-    </head>
-    <body>
-        ${getNavBar(inDashboard)}
-        <main>
-            ${content}
-        </main>
-        <footer>
-            <p>© 2025 Rose's Shop</p>
-        </footer>
-    </body>
-    </html>
-    `;
-}
 const productController = {
     async showProducts (req,res){
         try{
