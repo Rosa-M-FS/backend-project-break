@@ -29,7 +29,8 @@ const getNavBar=(indashboard=false)=>{
     return html;
 }
 
-const baseHtml=(content,inDashboard=false)=>{`
+const baseHtml=(content,inDashboard=false)=>{
+    return`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -135,7 +136,7 @@ const productController = {
 
     async updateProduct (req,res){
         try{
-            const productUpadated=await productModel.findByIdAndUpdate(req.params.id,req.body);
+            const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,req.body);
             res.redirect('/dashboard');
         }
         catch(error){
@@ -146,7 +147,7 @@ const productController = {
 
     async deleteProduct (req,res){
         try{
-            const productDeleted = await productModel.findByIdAndDelete(req.params.id)
+            const productDeleted = await productModel.findByIdAndDelete(req.params.productIdd)
             res.redirect('/dashboard');
         }
         catch(error){
@@ -155,14 +156,5 @@ const productController = {
         }
     },
 }
-/* module.exports = { 
-    showProducts,
-    showProductById,
-    showNewProduct,
-    createProduct,
-    showEditProduct,
-    updateProduct,
-    deleteProduct
-};
- */
+
 module.exports=productController;
