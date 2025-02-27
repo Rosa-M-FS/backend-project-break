@@ -2,7 +2,10 @@ const express = require ('express');
 const router = express.Router();
 const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
-
+//
+router.get('/', (req, res) => {
+    res.send(baseHtml('<h1>Bienvenido a Rose\'s Shop</h1><p>Explora nuestros productos <a href="/products">aquí</a></p>'));
+});
 //visitor routes
 router.get('/products',productController.showProducts);
 router.get('/products/:productId',productController.showProductById);
