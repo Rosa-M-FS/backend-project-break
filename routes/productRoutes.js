@@ -4,7 +4,7 @@ const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 //
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const categories = ["Novedades", "Colección", "Accesorios", "Calzado", "Promociones"];
         const productsByCategory = await Promise.all(categories.map(async (category) => {
