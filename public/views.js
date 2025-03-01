@@ -12,7 +12,7 @@ const getProductCards=(products)=>{
             </div>
         `;
     }
-    return html;
+    return html; 
 }
 
 const getNavBar=(indashboard=false)=>{

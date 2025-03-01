@@ -1,4 +1,4 @@
-const productModel=require('../models/Product');
+const productModel=require('../models/Product'); 
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 
 

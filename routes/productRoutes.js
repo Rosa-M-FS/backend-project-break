@@ -1,5 +1,5 @@
 const express = require ('express');
-const router = express.Router();
+const router = express.Router();  
 const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
