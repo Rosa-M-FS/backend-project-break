@@ -103,7 +103,7 @@ const productController = {
                 console.log('Error en la subida de imagen',err);
                 return res.status(500).send('<p>Error al subir imagen. Usa .jpg,.jpeg, .png,.gif')
             }
-        })
+
         try{
             const {name,description, price, subcategory,size } = req.body;
             const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
@@ -131,7 +131,8 @@ const productController = {
             console.log('Error al crear producto',error);
             res.status(500).send(baseHtml('<p>Error al  crear producto</p>'));
         }
-    },
+    });
+},
 
     async showEditProduct (req,res){
         try{

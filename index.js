@@ -5,7 +5,7 @@ const mongoose=require('mongoose');//base datos
 
 const productRoutes=require('./routes/productRoutes');
 const app = express();
-
+const multer=require('multer');
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>console.log('Connect to MongoDB'))
@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:
 app.use(express.json());//leer solicitudes
 app.use(cors());//permitir ¨accesos¨
 app.use(express.urlencoded({extended:true}));
-app.use(express.static('public'));//archivos estáticos de public
+app.use('/images',express.static('public/images'));//archivos estáticos de public
 
 app.use('/',productRoutes);
 
