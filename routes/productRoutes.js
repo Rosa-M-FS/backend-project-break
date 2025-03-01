@@ -5,26 +5,6 @@ const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 //
 router.get('/', (req, res) => {
-/*     try {
-        const categories = ["Novedades", "Colección", "Accesorios", "Calzado", "Promociones"];
-        const productsByCategory = await Promise.all(categories.map(async (category) => {
-            return {
-                category,
-                products: await productModel.find({ categories: category })
-            };
-        }));
-
-        const categoryCardsHtml = productsByCategory.map(category => {
-            const productCards = getProductCards(category.products);
-            return `
-                <section>
-                    <h2>${category.category}</h2>
-                    <div class="category-cards">
-                        ${productCards}
-                    </div>
-                </section>
-            `;
-        }).join(''); */
     res.send(baseHtml('<h1>Bienvenido a Rose\'s Shop</h1><p>Explora nuestros productos <a href="/products">aquí</a></p>'));
 });
 //visitor routes
