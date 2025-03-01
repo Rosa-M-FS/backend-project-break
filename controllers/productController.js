@@ -25,7 +25,7 @@ const uploadimages = multer({
             return cb(new Error('Solo se permiten imágenes (.jpg, .jpeg, .png, .gif)'), false);
         }
     }
-}).array('image',5);
+}).array('images',5);
 
 const productController = {
     async showProducts (req,res){
