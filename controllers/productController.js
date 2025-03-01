@@ -111,7 +111,7 @@ const productController = {
             if (!categories || categories.length === 0) {
                 return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
             }
-            const images = req.files ? req.files.map(file=>`/images/${req.file.filename}`) : [];
+            const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
             if (images.length===0) {
                 return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
               }
