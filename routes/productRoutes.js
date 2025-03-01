@@ -4,8 +4,8 @@ const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 //
-router.get('/', async (req, res) => {
-    try {
+router.get('/', (req, res) => {
+/*     try {
         const categories = ["Novedades", "Colección", "Accesorios", "Calzado", "Promociones"];
         const productsByCategory = await Promise.all(categories.map(async (category) => {
             return {
@@ -24,13 +24,8 @@ router.get('/', async (req, res) => {
                     </div>
                 </section>
             `;
-        }).join('');
-    res.send(baseHtml(categoryCardsHtml));
-    }catch(error){
-        console.log('Error cargando productos por categorías:', error);
-        res.status(500).send(baseHtml('<p>Error al cargar productos por categorías</p>'));
-    }
-
+        }).join(''); */
+    res.send(baseHtml('<h1>Bienvenido a Rose\'s Shop</h1><p>Explora nuestros productos <a href="/products">aquí</a></p>'));
 });
 //visitor routes
 router.get('/products',productController.showProducts);
