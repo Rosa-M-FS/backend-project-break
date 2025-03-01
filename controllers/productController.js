@@ -98,7 +98,7 @@ const productController = {
     },
 
     async createProduct (req,res){
-        uploadimages.array('images',5)(req,res,async(err)=>{
+        uploadimages(req,res,async(err)=>{
             if(err){
                 console.log('Error en la subida de imagen',err);
                 return res.status(500).send('<p>Error al subir imagen. Usa .jpg,.jpeg, .png,.gif')
