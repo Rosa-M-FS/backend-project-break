@@ -105,7 +105,9 @@ const productController = {
             }
         })
         try{
-            const {name,description, price, categories, subcategory,size } = req.body;
+            const {name,description, price, subcategory,size } = req.body;
+            const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
+
             if (!categories || categories.length === 0) {
                 return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
             }
