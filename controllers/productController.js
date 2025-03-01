@@ -85,7 +85,7 @@ const productController = {
                 <label><input type="checkbox" name="size" value="L"> L</label><br>
                 <label><input type="checkbox" name="size" value="XL"> XL</label><br>
                 
-                <label for= "image">Imagen</label><input type="file" name="image" accept=".jpg,.jpeg,.png,.gif" multiple><br>
+                <label for= "image">Imagen</label><input type="file" name="images" accept=".jpg,.jpeg,.png,.gif" multiple><br>
                 <button type="submit">Crear Producto</button>
             </form>
         `;
