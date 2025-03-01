@@ -5,7 +5,7 @@ const mongoose=require('mongoose');//base datos
 
 const productRoutes=require('./routes/productRoutes');
 const app = express();
-const multer=require('multer');
+/* const multer=require('multer'); */
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>console.log('Connect to MongoDB'))

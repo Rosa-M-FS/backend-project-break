@@ -104,33 +104,33 @@ const productController = {
                 return res.status(500).send('<p>Error al subir imagen. Usa .jpg,.jpeg, .png,.gif')
             }
 
-        try{
-            const {name,description, price, subcategory,size } = req.body;
-            const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
+            try{
+                const {name,description, price, subcategory,size } = req.body;
+                const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
 
-            if (!categories || categories.length === 0) {
-                return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
+                if (!categories || categories.length === 0) {
+                    return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
+                }
+                const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
+                if (images.length===0) {
+                    return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
+                }
+                const newProduct = await productModel.create({
+                    name,
+                    description,
+                    price,
+                    categories,
+                    subcategory,
+                    size,
+                    image:images
+                });
+            
+                res.redirect('/dashboard');
             }
-            const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
-            if (images.length===0) {
-                return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
-              }
-            const newProduct = await productModel.create({
-                name,
-                description,
-                price,
-                categories,
-                subcategory,
-                size,
-                image:images
-            });
-        
-            res.redirect('/dashboard');
-        }
-        catch(error){
-            console.log('Error al crear producto',error);
-            res.status(500).send(baseHtml('<p>Error al  crear producto</p>'));
-        }
+            catch(error){
+                console.log('Error al crear producto',error);
+                res.status(500).send(baseHtml('<p>Error al  crear producto</p>'));
+            }
     });
 },
 
