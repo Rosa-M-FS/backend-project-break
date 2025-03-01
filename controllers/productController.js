@@ -25,7 +25,7 @@ const uploadimages = multer({
             return cb(new Error('Solo se permiten imágenes (.jpg, .jpeg, .png, .gif)'), false);
         }
     }
-}).single('image');
+}).array('image',5);
 
 const productController = {
     async showProducts (req,res){
@@ -64,8 +64,8 @@ const productController = {
                 <label>Descripción: <input type="text" name="description" required></label><br>
                 <label>Precio: <input type="number" name="price" required></label><br>
                 
-                <label for="category">Categoría</label>
-                <select name="category" required>
+                <label for="categories">Categorías</label>
+                <select name="categories" multiple required>
                     <option value="Novedades">Novedades</option>
                     <option value="Colección">Colección</option>
                     <option value="Accesorios">Accesorios</option>
@@ -107,8 +107,11 @@ const productController = {
             }
         })
         try{
-            const {name,description, price, category, size } = req.body;
-            const images = req.file ? req.files.map(file=>`/images/${req.file.filename}`) : [];
+            const {name,description, price, categories, subacategory,size } = req.body;
+            if (!categories || categories.length === 0) {
+                return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
+            }
+            const images = req.files ? req.files.map(file=>`/images/${req.file.filename}`) : [];
             if (images.length===0) {
                 return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
               }
@@ -116,9 +119,10 @@ const productController = {
                 name,
                 description,
                 price,
-                category,
+                categories,
                 subcategory,
-                image
+                size,
+                image:images
             });
         
             res.redirect('/dashboard');
@@ -142,7 +146,7 @@ const productController = {
                 <label>Descripción: <input type="text" name="description" value="${product.description}" required></label><br>
                 <label>Precio: <input type="number" name="price" value="${product.price}" required></label><br>
                 <label for="category">Categoría</label>
-                <select name="category" required>
+                <select name="categories" multiple required>
                     <option value="Novedades" ${product.category === "Novedades" ? "selected" : ""}>Novedades</option>
                     <option value="Colección" ${product.category === "Colección" ? "selected" : ""}>Colección</option>
                     <option value="Accesorios" ${product.category === "Accesorios" ? "selected" : ""}>Accesorios</option>
@@ -178,14 +182,34 @@ const productController = {
     },
 
     async updateProduct (req,res){
-        try{
-            const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,req.body);
-            res.redirect('/dashboard');
-        }
-        catch(error){
-            console.log('Error al actualizar producto',error);
-            res.status(500).send(baseHtml('<p>Error al  actualizar producto</p>'));
-        }
+        uploadimages(req, res, async (err) => {
+            if (err) {
+                console.log('Error en la subida de imagen', err);
+                return res.status(500).send('<p>Error al subir imagen. Usa .jpg,.jpeg, .png,.gif</p>');
+            }
+            try{
+
+                const { name, description, price, categories, subcategory, size } = req.body;
+                const images = req.files ? req.files.map(file => `/images/${file.filename}`) : [];
+
+                // Actualizar producto, pero solo actualizamos las imágenes si se han subido nuevas
+                const updatedData = {
+                    name,
+                    description,
+                    price,
+                    categories,
+                    subcategory,
+                    size,
+                    ...(images.length > 0 && { image: images }),  // Solo actualizamos si hay nuevas imágenes
+                };
+                const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,req.body);
+                res.redirect('/dashboard');
+            }
+            catch(error){
+                console.log('Error al actualizar producto',error);
+                res.status(500).send(baseHtml('<p>Error al  actualizar producto</p>'));
+            }
+        });
     },
 
     async deleteProduct (req,res){
