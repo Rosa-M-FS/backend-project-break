@@ -38,7 +38,7 @@ const productController = {
                 <label>Nombre: <input type="text" name="name" required></label><br>
                 <label>Descripción: <input type="text" name="description" required></label><br>
                 <label>Precio: <input type="number" name="price" required></label><br>
-                <label>Imagen URL: <input type="text" name="image" required></label><br>
+                <label>Imagen URL: <input type="text" name="image"></label><br>
                 <button type="submit">Crear Producto</button>
             </form>
         `;
