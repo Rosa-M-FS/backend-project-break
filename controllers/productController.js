@@ -65,14 +65,12 @@ const productController = {
                 <label>Precio: <input type="number" name="price" required></label><br>
                 
                 <label for="categories">Categorías</label>
-                <select name="categories" multiple required>
-                    <option value="Novedades">Novedades</option>
-                    <option value="Colección">Colección</option>
-                    <option value="Accesorios">Accesorios</option>
-                    <option value="Calzado">Calzado</option>
-                    <option value="Promociones">Promociones</option>
-                </select><br>
-                <label for="category">Categoría</label>
+                <label><input type="checkbox" name="categories" value="Novedades"> Novedades</label><br>
+                <label><input type="checkbox" name="categories" value="Colección"> Colección</label><br>
+                <label><input type="checkbox" name="categories" value="Accesorios"> Accesorios</label><br>
+                <label><input type="checkbox" name="categories" value="Calzado"> Calzado</label><br>
+                <label><input type="checkbox" name="categories" value="Promociones"> Promociones</label><br>
+                <label for="subcategory">Categoría</label>
                 <select name="Subcategory" required>
                     <option value="Vestido">Vestido</option>
                     <option value="Falda">Falda</option>
@@ -107,7 +105,7 @@ const productController = {
             }
         })
         try{
-            const {name,description, price, categories, subacategory,size } = req.body;
+            const {name,description, price, categories, subcategory,size } = req.body;
             if (!categories || categories.length === 0) {
                 return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
             }
@@ -145,14 +143,18 @@ const productController = {
                 <label>Nombre: <input type="text" name="name" value="${product.name}" required></label><br>
                 <label>Descripción: <input type="text" name="description" value="${product.description}" required></label><br>
                 <label>Precio: <input type="number" name="price" value="${product.price}" required></label><br>
-                <label for="category">Categoría</label>
-                <select name="categories" multiple required>
-                    <option value="Novedades" ${product.category === "Novedades" ? "selected" : ""}>Novedades</option>
-                    <option value="Colección" ${product.category === "Colección" ? "selected" : ""}>Colección</option>
-                    <option value="Accesorios" ${product.category === "Accesorios" ? "selected" : ""}>Accesorios</option>
-                    <option value="Calzado" ${product.category === "Calzado" ? "selected" : ""}>Calzado</option>
-                    <option value="Promociones" ${product.category === "Promociones" ? "selected" : ""}>Promociones</option>
-                </select><br>
+                <label for="categories">Categoría</label>
+                <label><input type="checkbox" name="categories" value="Novedades" 
+                    ${product.categories.includes('Novedades') ? "checked" : ""}> Novedades</label><br>
+                <label><input type="checkbox" name="categories" value="Colección" 
+                    ${product.categories.includes('Colección') ? "checked" : ""}> Colección</label><br>
+                <label><input type="checkbox" name="categories" value="Accesorios" 
+                    ${product.categories.includes('Accesorios') ? "checked" : ""}> Accesorios</label><br>
+                <label><input type="checkbox" name="categories" value="Calzado" 
+                    ${product.categories.includes('Calzado') ? "checked" : ""}> Calzado</label><br>
+                <label><input type="checkbox" name="categories" value="Promociones" 
+                    ${product.categories.includes('Promociones') ? "checked" : ""}> Promociones</label><br>
+
 
                 <label for="subcategory">Subcategoría</label>
                 <select name="subcategory" required>
