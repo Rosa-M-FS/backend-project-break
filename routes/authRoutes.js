@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const admin = require("../config/firebase");
+const path = require("path");
+
 const { showDashboard } = require('../controllers/authController');
 
-// 📌 Registro de usuario
+//login pag
+router.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+});
+
+//Registro de usuario
 router.post("/register", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -17,18 +24,18 @@ router.post("/register", async (req, res) => {
     }
 });
 
-//  Login (Solo devuelve el token, frontend debería manejar la sesión)
+//  Login 
 router.post("/login", async (req, res) => {
     const { idToken } = req.body;
     try {
-        const decodedToken = await auth.verifyIdToken(idToken);
+        const decodedToken = await admin.auth.verifyIdToken(idToken);
         res.status(200).json({ message: "Autenticado", uid: decodedToken.uid });
     } catch (error) {
         res.status(401).send("Token inválido");
     }
 });
 
-// Logout (En Firebase, el logout es manejado en el frontend)
+// Logout 
 router.post("/logout", (req, res) => {
     res.status(200).send("Cierre de sesión exitoso");
 });
