@@ -23,7 +23,7 @@ Este proyecto se centra en el desarrollo de una API para una tienda de ropa desa
 npm install
 
 3. configurar las variables de entorno en el archivo .env incluir 
-PORT=10000
+PORT=3000
 MONGODB_URI=mongodb+srv://<usuario>:<contraseña>@cluster.mongodb.net/<nombre_base_datos>
 
 ## Endpoints de la API
