@@ -62,7 +62,7 @@ const productController = {
 
     async showProductById (req,res){
         try{
-            const product = await productModel.findById(req.params._id);
+            const product = await productModel.findById(req.params.id);
             if(!product){
                 return res.status(404).send(baseHtml('<p> Product not found</p>'));
             }
@@ -87,7 +87,7 @@ const productController = {
                 
                 <label for="categories">Categorías</label>
                 <select id="categories" name="categories">
-                    <option value="colección">Vestidos</option>
+                    <option value="coleccion">Colección</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Calzado">Calzado</option>
                     <option value="Promociones">Promociones</option>
