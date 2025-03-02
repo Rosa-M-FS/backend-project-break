@@ -1,5 +1,5 @@
 
-const getProductCards=(products)=>{
+const  getProductCards=(products)=>{
     let html='';
     for (let product of products){
         html+=`
