@@ -145,8 +145,8 @@ const productController = {
                     return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
                 }
 
-                const isNew = req.body.isNew === 'on'; 
-
+                const isNew = req.body.isNew === 'on'? true : false; 
+                const isPromotion = req.body.isPromotion=== 'on'? true : false; 
                 const newProduct = await productModel.create({
                     name,
                     description,
@@ -228,8 +228,8 @@ const productController = {
 
                 const { name, description, price, categories, size } = req.body;
                 const images = req.files ? req.files.map(file => `/images/${file.filename}`) : [];
-                const isNew = req.body.isNew === 'on'; 
-                const isPromotion = req.body.isPromotion === 'on'; 
+                const isNew = req.body.isNew === 'on'? true : false; 
+                const isPromotion = req.body.isPromotion === 'on'? true : false; 
                 // Actualizar producto, pero solo actualizamos las imágenes si se han subido nuevas
                 const updatedData = {
                     name,

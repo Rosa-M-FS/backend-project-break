@@ -3,7 +3,6 @@ const router = express.Router();
 const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
-const authMiddleware = require("../middlewares/authMiddleware");
 //
 router.get('/', productController.showHome);
 //visitor routes
@@ -19,6 +18,5 @@ router.put('/dashboard/:productId',productController.updateProduct);
 router.delete('/dashboard/:productId/delete',productController.deleteProduct);
 router.get('/products/category/*', productController.showProductsByCategory);
 router.get('/products/promociones', productController.showPromotions);
-
 
 module.exports=router;
