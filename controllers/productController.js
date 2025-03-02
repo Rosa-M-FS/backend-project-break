@@ -71,7 +71,7 @@ const productController = {
                 <label><input type="checkbox" name="categories" value="Calzado"> Calzado</label><br>
                 <label><input type="checkbox" name="categories" value="Promociones"> Promociones</label><br>
                 <label for="subcategory">Categoría</label>
-                <select name="Subcategory" required>
+                <select name="subcategory" required>
                     <option value="Vestido">Vestido</option>
                     <option value="Falda">Falda</option>
                     <option value="Camisa">Camisa</option>
@@ -219,7 +219,7 @@ const productController = {
 
     async deleteProduct (req,res){
         try{
-            const productDeleted = await productModel.findByIdAndDelete(req.params.productIdd)
+            const productDeleted = await productModel.findByIdAndDelete(req.params.productId)
             res.redirect('/dashboard');
         }
         catch(error){
