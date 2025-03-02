@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../config/firebase");
+const { showDashboard } = require('../controllers/authController');
+
 
 // 📌 Registro de usuario
 router.post("/register", async (req, res) => {
@@ -27,9 +29,10 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// 📌 Logout (En Firebase, el logout es manejado en el frontend)
+// Logout (En Firebase, el logout es manejado en el frontend)
 router.post("/logout", (req, res) => {
     res.status(200).send("Cierre de sesión exitoso");
 });
+router.get('/dashboard', authMiddleware, showDashboard);
 
 module.exports = router;
