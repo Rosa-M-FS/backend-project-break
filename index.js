@@ -3,17 +3,22 @@ const express = require ('express');//crear servidor
 const cors = require('cors');//peticiones front
 const mongoose=require('mongoose');//base datos
 
+
 const methodOverride = require('method-override');
+const authRoutes = require("./routes/authRoutes");
+
 
 
 const productRoutes=require('./routes/productRoutes');
-const app = express();
-app.use(methodOverride('_method'));
-/* const multer=require('multer'); */
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>console.log('Connect to MongoDB'))
 .catch(error=>console.log(error));
+
+const app = express();
+app.use(methodOverride('_method'));
+/* const multer=require('multer'); */
+app.use("/auth", authRoutes);
 
 app.use(express.json());//leer solicitudes
 app.use(cors());//permitir ¨accesos¨
