@@ -21,50 +21,50 @@ const getNavBar=(indashboard=false)=>{
             <a href="/">Home</a>
             
             <div class="dropdown">
-                <a href="/products/Novedades">Novedades</a>
+                <a href="/products/categories/Novedades">Novedades</a>
                     <div class="dropdown-content">
-                        <a href="/products/novedades/camisas">Camisas</a>
-                        <a href="/products/novedades/vestidos">Vestidos</a>
-                        <a href="/products/novedades/faldas">Faldas</a>
-                        <a href="/products/novedades/pantalones">Pantalones</a>
-                        <a href="/products/novedades/camisetas">Camisetas</a>
-                        <a href="/products/novedades/tops">Tops</a>
+                        <a href="/products/categories/novedades/camisas">Camisas</a>
+                        <a href="/products/categories/novedades/vestidos">Vestidos</a>
+                        <a href="/products/categories/novedades/faldas">Faldas</a>
+                        <a href="/products/categories/novedades/pantalones">Pantalones</a>
+                        <a href="/products/categories/novedades/camisetas">Camisetas</a>
+                        <a href="/products/categories/novedades/tops">Tops</a>
                     </div>
             </div>
             
             <div class="dropdown">
-                <a href="/products/category/Colección">Colección</a>
+                <a href="/products/categories/Colección">Colección</a>
                     <div class="dropdown-content">
-                        <a href="/products/category/colección/camisas">Camisas</a>
-                        <a href="/products/category/colección/vestidos">Vestidos</a>
-                        <a href="/products/category/colección/faldas">Faldas</a>
-                        <a href="/products/category/colección/pantalones">Pantalones</a>
-                        <a href="/products/category/colección/camisetas">Camisetas</a>
-                        <a href="/products/category/colección/tops">Tops</a>
+                        <a href="/products/categories/colección/camisas">Camisas</a>
+                        <a href="/products/categories/colección/vestidos">Vestidos</a>
+                        <a href="/products/categories/colección/faldas">Faldas</a>
+                        <a href="/products/categories/colección/pantalones">Pantalones</a>
+                        <a href="/products/categories/colección/camisetas">Camisetas</a>
+                        <a href="/products/categories/colección/tops">Tops</a>
                     </div>
             </div>
             
             <div class="dropdown">
-                <a href="/products/category/Accesorios">Accesorios</a>
+                <a href="/products/categories/Accesorios">Accesorios</a>
                     <div class="dropdown-content">
-                        <a href="/products/category/accesorios/cinturones">Cinturones</a>
-                        <a href="/products/category/accesorios/cabello">Cabello</a>
-                        <a href="/products/category/accesorios/otros">Otros</a>
+                        <a href="/products/categories/accesorios/cinturones">Cinturones</a>
+                        <a href="/products/categories/accesorios/cabello">Cabello</a>
+                        <a href="/products/categories/accesorios/otros">Otros</a>
                     </div>
             </div>
 
             <div class="dropdown">
-                <a href="/products/category/Calzado">Calzado</a>
+                <a href="/products/categories/Calzado">Calzado</a>
                     <div class="dropdown-content">
-                        <a href="/products/category/calzado/botas">Botas</a>
-                        <a href="/products/category/calzado/botines">Botines</a>
-                        <a href="/products/category/calzado/zapatos-planos">Zapatos Planos</a>
-                        <a href="/products/category/calzado/zapatos-tacon">Zapatos Tacón</a>
-                        <a href="/products/category/calzado/zapatillas">Zapatillas</a>
+                        <a href="/products/categories/calzado/botas">Botas</a>
+                        <a href="/products/categories/calzado/botines">Botines</a>
+                        <a href="/products/categories/calzado/zapatos-planos">Zapatos Planos</a>
+                        <a href="/products/categories/calzado/zapatos-tacon">Zapatos Tacón</a>
+                        <a href="/products/categories/calzado/zapatillas">Zapatillas</a>
                 </div>
             </div>
             
-            <a href="/products/category/promociones">Promociones</a>
+            <a href="/products/categories/promociones">Promociones</a>
         ${indashboard ? `<a href="/dashboard/new" class="newP-btn"> Añadir Producto</a>`: ''}
         </nav>
         `;

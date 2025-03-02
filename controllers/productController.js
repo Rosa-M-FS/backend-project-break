@@ -177,7 +177,7 @@ const productController = {
             }
             const formHtml = `
             <h2>Editar Producto</h2>
-            <form action="/dashboard/${product._id}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/dashboard/${product.id}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <label>Nombre: <input type="text" name="name" value="${product.name}" required></label><br>
                 
                 <label>Descripción: <input type="text" name="description" value="${product.description}" required></label><br>
@@ -243,7 +243,7 @@ const productController = {
                     isNew,
                     isPromotion,
                 };
-                const productUpdated=await productModel.findByIdAndUpdate(req.params.productId,updatedData,{new:true});
+                await productModel.findByIdAndUpdate(req.params.id,updatedData,{new:true});
                 res.redirect('/dashboard');
             }
             catch(error){
