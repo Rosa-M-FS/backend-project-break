@@ -93,13 +93,7 @@ const productController = {
                     <option value="Promociones">Promociones</option>
                 </select>
                 <br>
-
-                <label for="subcategory">Categoría</label>
-                <select id="subcategory" name="subcategory" required>
-
-                </select><br>
-
-                
+               
                 <label for="size">Tallas</label><br>
                 <label><input type="checkbox" name="size" value="XS"> XS</label><br>
                 <label><input type="checkbox" name="size" value="S"> S</label><br>
@@ -114,30 +108,6 @@ const productController = {
                 
                 <button type="submit">Crear Producto</button>
             </form>
-
-            <script>
-                function updateSubcat(){
-                    const subcategorySelect = document.getElementById("subcategory");
-                    const categories = this.value;
-                    let subcategories = [];
-
-                    if (categories === "Colección") {
-                        subcategories = ["Vestido", "Falda", "Camisa", "Camiseta", "Pantalón"];
-                    } else if (categories === "Calzado") {
-                        subcategories = ["Botas", "Botines", "Zapatos Planos", "Zapatos Tacón", "Zapatillas"];
-                    } else if (categories === "Accesorios") {
-                        subcategories = ["Cinturones", "Cabello", "Otros"];
-                    }
-
-                    subcategorySelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
-                    subcategories.forEach(sub => {
-                        const option = document.createElement("option");
-                        option.value = sub;
-                        option.textContent = sub;
-                        subcategorySelect.appendChild(option);
-                    });
-                };
-            </script>
 
         `;
         res.send(baseHtml(formHtml));
@@ -156,7 +126,7 @@ const productController = {
             }
 
             try{
-                const {name,description, price,categories, subcategory,size } = req.body;
+                const {name,description, price,categories, size } = req.body;
 
                 const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
                 if (images.length===0) {
@@ -170,7 +140,6 @@ const productController = {
                     description,
                     price,
                     categories,
-                    subcategory,
                     size,
                     image:images,
                     isNew,
@@ -212,14 +181,7 @@ const productController = {
                     ${product.categories.includes('Promociones') ? "checked" : ""}> Promociones</label><br>
 
 
-                <label for="subcategory">Subcategoría</label>
-                <select name="subcategory" required>
-                    <option value="Vestido" ${product.subcategory === "Vestido" ? "selected" : ""}>Vestido</option>
-                    <option value="Falda" ${product.subcategory === "Falda" ? "selected" : ""}>Falda</option>
-                    <option value="Camisa" ${product.subcategory === "Camisa" ? "selected" : ""}>Camisa</option>
-                    <option value="Camiseta" ${product.subcategory === "Camiseta" ? "selected" : ""}>Camiseta</option>
-                    <option value="Pantalon" ${product.subcategory === "Pantalon" ? "selected" : ""}>Pantalón</option>
-                </select><br>
+
                 <label for="size">Tallas</label>
                 <label><input type="checkbox" name="size" value="XS" ${product.size.includes('XS') ? "checked" : ""}> XS</label><br>
                 <label><input type="checkbox" name="size" value="S" ${product.size.includes('S') ? "checked" : ""}> S</label><br>
@@ -251,7 +213,7 @@ const productController = {
             }
             try{
 
-                const { name, description, price, categories, subcategory, size } = req.body;
+                const { name, description, price, categories, size } = req.body;
                 const images = req.files ? req.files.map(file => `/images/${file.filename}`) : [];
                 const isNew = req.body.isNew === 'on'; 
 
@@ -261,7 +223,6 @@ const productController = {
                     description,
                     price,
                     categories,
-                    subcategory,
                     size,
                     ...(images.length > 0 && { image: images }),  // Solo actualizamos si hay nuevas imágenes
                     isNew,
