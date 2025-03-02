@@ -61,15 +61,18 @@ const productController = {
             <h2>Añadir Nuevo Producto</h2>
             <form action="/dashboard" method="POST" enctype="multipart/form-data">
                 <label>Nombre: <input type="text" name="name" required></label><br>
+                
                 <label>Descripción: <input type="text" name="description" required></label><br>
+                
                 <label>Precio: <input type="number" name="price" required></label><br>
                 
                 <label for="categories">Categorías</label>
-                <label><input type="checkbox" name="categories" value="Novedades"> Novedades</label><br>
+                <
                 <label><input type="checkbox" name="categories" value="Colección"> Colección</label><br>
                 <label><input type="checkbox" name="categories" value="Accesorios"> Accesorios</label><br>
                 <label><input type="checkbox" name="categories" value="Calzado"> Calzado</label><br>
                 <label><input type="checkbox" name="categories" value="Promociones"> Promociones</label><br>
+                
                 <label for="subcategory">Categoría</label>
                 <select name="subcategory" required>
                     <option value="Vestido">Vestido</option>
@@ -86,6 +89,10 @@ const productController = {
                 <label><input type="checkbox" name="size" value="XL"> XL</label><br>
                 
                 <label for= "image">Imagen</label><input type="file" name="images" accept=".jpg,.jpeg,.png,.gif" multiple><br>
+                
+                <label><input type="checkbox" name="isNew"> Incluir en novedades><br>
+
+                
                 <button type="submit">Crear Producto</button>
             </form>
         `;
@@ -115,6 +122,9 @@ const productController = {
                 if (images.length===0) {
                     return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
                 }
+
+                const isNew = req.body.isNew === 'on'; 
+
                 const newProduct = await productModel.create({
                     name,
                     description,
@@ -122,7 +132,8 @@ const productController = {
                     categories,
                     subcategory,
                     size,
-                    image:images
+                    image:images,
+                    isNew,
                 });
             
                 res.redirect('/dashboard');
@@ -144,11 +155,13 @@ const productController = {
             <h2>Editar Producto</h2>
             <form action="/dashboard/${product._id}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <label>Nombre: <input type="text" name="name" value="${product.name}" required></label><br>
+                
                 <label>Descripción: <input type="text" name="description" value="${product.description}" required></label><br>
+                
                 <label>Precio: <input type="number" name="price" value="${product.price}" required></label><br>
+                
                 <label for="categories">Categoría</label>
-                <label><input type="checkbox" name="categories" value="Novedades" 
-                    ${product.categories.includes('Novedades') ? "checked" : ""}> Novedades</label><br>
+                
                 <label><input type="checkbox" name="categories" value="Colección" 
                     ${product.categories.includes('Colección') ? "checked" : ""}> Colección</label><br>
                 <label><input type="checkbox" name="categories" value="Accesorios" 
@@ -175,6 +188,10 @@ const productController = {
                 <label><input type="checkbox" name="size" value="XL" ${product.size.includes('XL') ? "checked" : ""}> XL</label><br>
 
                 <label for="images">Imágenes</label><input type="file" name="images"  accept=".jpg,.jpeg,.png,.gif" multiple><br>
+                
+                <label><input type="checkbox" name="isNew"> Incluir en novedades</label><br>
+
+                
                 <button type="submit">Actualizar Producto</button>
             </form>
         `;
@@ -196,6 +213,7 @@ const productController = {
 
                 const { name, description, price, categories, subcategory, size } = req.body;
                 const images = req.files ? req.files.map(file => `/images/${file.filename}`) : [];
+                const isNew = req.body.isNew === 'on'; 
 
                 // Actualizar producto, pero solo actualizamos las imágenes si se han subido nuevas
                 const updatedData = {
@@ -206,6 +224,7 @@ const productController = {
                     subcategory,
                     size,
                     ...(images.length > 0 && { image: images }),  // Solo actualizamos si hay nuevas imágenes
+                    isNew,
                 };
                 const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,updatedData,{new:true});
                 res.redirect('/dashboard');
