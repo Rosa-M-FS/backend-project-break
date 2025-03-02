@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 //visitor routes
 router.get('/products',productController.showProducts);
-router.get('/products/catgegory/:productId',productController.showProductById);
+router.get('/products/category/:productId',productController.showProductById);
 //admin routes
 router.get('/dashboard',productController.showProducts);
 router.get('/dashboard/new',productController.showNewProduct);

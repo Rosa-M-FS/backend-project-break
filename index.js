@@ -3,6 +3,9 @@ const express = require ('express');//crear servidor
 const cors = require('cors');//peticiones front
 const mongoose=require('mongoose');//base datos
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 const productRoutes=require('./routes/productRoutes');
 const app = express();
 /* const multer=require('multer'); */
@@ -14,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:
 app.use(express.json());//leer solicitudes
 app.use(cors());//permitir ¨accesos¨
 app.use(express.urlencoded({extended:true}));
-app.use('/images',express.static('public/images'));//archivos estáticos de public
+app.use(express.static('public'));//archivos estáticos de public
 
 app.use('/',productRoutes);
 

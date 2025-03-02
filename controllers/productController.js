@@ -108,7 +108,7 @@ const productController = {
                 const {name,description, price, subcategory,size } = req.body;
                 const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
 
-                if (!categories || categories.length === 0) {
+                if (!categories || categories.length === 0|| categories.includes(undefined)) {
                     return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
                 }
                 const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
@@ -207,7 +207,7 @@ const productController = {
                     size,
                     ...(images.length > 0 && { image: images }),  // Solo actualizamos si hay nuevas imágenes
                 };
-                const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,req.body);
+                const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,updatedData,{new:true});
                 res.redirect('/dashboard');
             }
             catch(error){
