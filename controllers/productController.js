@@ -136,7 +136,7 @@ const productController = {
                         option.textContent = sub;
                         subcategorySelect.appendChild(option);
                     });
-                });
+                };
             </script>
 
         `;
