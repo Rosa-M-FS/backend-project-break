@@ -4,10 +4,11 @@ const cors = require('cors');//peticiones front
 const mongoose=require('mongoose');//base datos
 
 const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
+
 
 const productRoutes=require('./routes/productRoutes');
 const app = express();
+app.use(methodOverride('_method'));
 /* const multer=require('multer'); */
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
