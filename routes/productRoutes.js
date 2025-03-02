@@ -5,7 +5,8 @@ const productController = require('../controllers/productController');
 const {baseHtml,getProductCards,getNavBar}=require('../public/views');
 //
 router.get('/', (req, res) => {
-    res.send(baseHtml('<h1>Bienvenido a Rose\'s Shop</h1><p>Explora nuestros productos <a href="/products">aquí</a></p>'));
+    res.send(baseHtml('<h1>Bienvenido a Rose\'s Shop</h1><p>Explora nuestros productos <a href="/products">aquí</a></p>'))
+
 });
 //visitor routes
 router.get('/products',productController.showProducts);
