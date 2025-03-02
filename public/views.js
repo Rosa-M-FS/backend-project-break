@@ -1,18 +1,25 @@
 
-const  getProductCards=(products)=>{
+const  getProductCards=(products,inDashboard=false)=>{
     let html='';
     for (let product of products){
         html+=`
             <div class="product-card">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image.length ? product.image[0]:'/images/default.jpg'}" alt="${product.name}">
                 <h2>${product.name}</h2>
                 <p>${product.description}</p>
                 <p>${product.price}€</p>
                 <a href="/products/${product._id}">Ver detalle</a>
             </div>
+            ${inDashboard ? `
+                <a href="/dashboard/${product._id}/edit">
+                    <button style="background-color: blue; color: white; padding: 5px 10px; border: none; cursor: pointer;">
+                        Editar
+                    </button>
+                </a>`:''}
         `;
     }
     return html; 
+
 }
 
 const getNavBar=(indashboard=false, isLogged = false)=>{

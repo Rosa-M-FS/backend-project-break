@@ -32,13 +32,13 @@ const productController = {
         try {
             const novedades = await productModel.find({ isNew: true });
             const categorias = ["Colección", "Accesorios", "Calzado", "Promociones"];
-    
+            const isDashboard = req.path.includes('/dashboard');
             res.send(baseHtml(`
                 <h1>Rose's Shop</h1>
                 <div class="novedades">
                 </div>
                 <h2>Últimas novedades</h2>
-                ${getProductCards(novedades)}
+                ${getProductCards(novedades,isDashboard)}
                 <div class="categorias">
                     ${categorias.map(cat => `<a href="/products/categories/${cat}">${cat}</a>`).join("<br>")}
                 </div>
@@ -53,7 +53,8 @@ const productController = {
     async showProducts (req,res){
         try{
             const products = await productModel.find();
-            const productCards = getProductCards(products);
+            const isDashboard = req.path.includes('/dashboard');
+            const productCards = getProductCards(products,isDashboard);
             res.send( baseHtml(productCards));
 
         }
@@ -117,7 +118,7 @@ const productController = {
                 
                 <label for= "image">Imagen</label><input type="file" name="images" accept=".jpg,.jpeg,.png,.gif" multiple><br>
                 
-                <label><input type="checkbox" name="isNew"> Incluir en novedades><br>
+                <label><input type="checkbox" name="isNew"> Incluir en novedades</label><br>
 
                 
                 <button type="submit">Crear Producto</button>
@@ -192,7 +193,7 @@ const productController = {
                 </select>
                 <br>
 
-                <label><input type="checkbox" id="promotionCheckbox"> ¿Marcar como promoción?</label>
+                <label><input type="checkbox" id="isPromotion" ${product.isPromotion ? "checked" : ""}> ¿Marcar como promoción?</label>
 
                 <label for="size">Tallas</label>
                 <label><input type="checkbox" name="size" value="XS" ${product.size.includes('XS') ? "checked" : ""}> XS</label><br>
@@ -203,7 +204,7 @@ const productController = {
 
                 <label for="images">Imágenes</label><input type="file" name="images"  accept=".jpg,.jpeg,.png,.gif" multiple><br>
                 
-                <label><input type="checkbox" name="isNew"> Incluir en novedades</label><br>
+                <label><input type="checkbox" name="isNew" ${product.isNew ? "checked" : ""}> Incluir en novedades</label><br>
 
                 
                 <button type="submit">Actualizar Producto</button>
@@ -274,8 +275,8 @@ const productController = {
             if (products.length === 0) {
                 return res.send(baseHtml(`<p>No hay productos en la categoría: ${category}</p>`));
             }
-    
-            const productCards = getProductCards(products);
+            const isDashboard = req.path.includes('/dashboard');
+            const productCards = getProductCards(products,isDashboard);
             res.send(baseHtml(`
                 <h2>Productos en la categoría: ${category}</h2>
                 ${productCards}
@@ -292,7 +293,7 @@ const productController = {
     
             res.send(baseHtml(`
                 <h1>Productos en Promoción</h1>
-                ${getProductCards(promotions)}
+                ${getProductCards(promotions,true)}
                 <a href="/">Volver al inicio</a>
             `));
         } catch (error) {
