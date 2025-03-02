@@ -93,7 +93,7 @@ const productController = {
         try{
             const formHtml = `
             <h2>Añadir Nuevo Producto</h2>
-            <form action="/dashboard" method="POST" enctype="multipart/form-data">
+            <form class="form" action="/dashboard" method="POST" enctype="multipart/form-data">
                 <label>Nombre: <input type="text" name="name" required></label><br>
                 
                 <label>Descripción: <input type="text" name="description" required></label><br>
@@ -177,23 +177,20 @@ const productController = {
             }
             const formHtml = `
             <h2>Editar Producto</h2>
-            <form action="/dashboard/${product.id}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form class="form" action="/dashboard/${product.id}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <label>Nombre: <input type="text" name="name" value="${product.name}" required></label><br>
                 
                 <label>Descripción: <input type="text" name="description" value="${product.description}" required></label><br>
                 
                 <label>Precio: <input type="number" name="price" value="${product.price}" required></label><br>
                 
-                <label for="categories">Categoría</label>
-                
-                <label><input type="checkbox" name="categories" value="Colección" 
-                    ${product.categories.includes('Colección') ? "checked" : ""}> Colección</label><br>
-                <label><input type="checkbox" name="categories" value="Accesorios" 
-                    ${product.categories.includes('Accesorios') ? "checked" : ""}> Accesorios</label><br>
-                <label><input type="checkbox" name="categories" value="Calzado" 
-                    ${product.categories.includes('Calzado') ? "checked" : ""}> Calzado</label><br>
-                <label><input type="checkbox" name="categories" value="Promociones" 
-                    ${product.categories.includes('Promociones') ? "checked" : ""}> Promociones</label><br>
+                <label for="categories">Categorías</label>
+                <select id="categories" name="categories" onchange="updateSubcat()">
+                    <option value="Colección">Colección</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Calzado">Calzado</option>
+                </select>
+                <br>
 
                 <label><input type="checkbox" id="promotionCheckbox"> ¿Marcar como promoción?</label>
 
@@ -210,6 +207,11 @@ const productController = {
 
                 
                 <button type="submit">Actualizar Producto</button>
+            </form>
+            <form action="/dashboard/${product.id}/delete?_method=DELETE" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este producto?');">
+                <button class="delete-btn" type="submit" style="background-color: red; color: white; padding: 8px 12px; border: none; cursor: pointer;">
+                    Eliminar Producto
+                </button>
             </form>
         `;
         res.send(baseHtml(formHtml));
@@ -255,11 +257,6 @@ const productController = {
  
     async deleteProduct (req,res){
         try{
-            const formHtml=`
-            <form action="/dashboard/${req.params.id}?_method=DELETE" method="POST">
-                <button type="submit">Eliminar</button>
-            </form>`
-
             await productModel.findByIdAndDelete(req.params.id)
             res.redirect('/dashboard');
         }

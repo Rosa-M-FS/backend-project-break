@@ -15,7 +15,7 @@ const getProductCards=(products)=>{
     return html; 
 }
 
-const getNavBar=(indashboard=false)=>{
+const getNavBar=(indashboard=false, isLogged = false)=>{
     let html=`
         <nav class="navBar">
             <a href="/">Home</a>
@@ -66,7 +66,25 @@ const getNavBar=(indashboard=false)=>{
             
             <a href="/products/categories/promociones">Promociones</a>
         ${indashboard ? `<a href="/dashboard/new" class="newP-btn"> Añadir Producto</a>`: ''}
+        
+        ${isLogged ? 
+            `<a href="#" class="logout-btn" onclick="logoutUser()">Logout</a>` : 
+            `<a href="/login" class="login-btn">Login</a>`}
         </nav>
+
+        <script>
+            function logoutUser() {
+                // Aquí deberías hacer una petición a tu backend para cerrar sesión
+                fetch('/logout', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = "/"; // Redirige al home tras cerrar sesión
+                        }
+                    })
+                    .catch(error => console.error("Error al cerrar sesión:", error));
+            }
+        </script>
         `;
     return html;
 }
