@@ -216,7 +216,7 @@ const productController = {
             }
         });
     },
-
+ 
     async deleteProduct (req,res){
         try{
             const productDeleted = await productModel.findByIdAndDelete(req.params.productId)
