@@ -76,7 +76,7 @@ const productController = {
                 <p><strong>Precio:</strong> $${product.price}</p>
                 <p><strong>Categoría:</strong> ${product.categories}</p>
                 <p><strong>Tallas disponibles:</strong> ${product.size.join(', ')}</p>
-                 ${isDashboard ? `<p><strong>Nuevo:</strong> ${product.isNew ? 'Sí' : 'No'}</p>`:""}
+                 <p><strong>Nuevo:</strong> ${product.isNew ? 'Sí' : 'No'}</p>
             </div>
         `;
             res.send(baseHtml(productHtml));
@@ -169,7 +169,7 @@ const productController = {
 
     async showEditProduct (req,res){
         try{
-            const product = await productModel.findById(req.params.productId);
+            const product = await productModel.findById(req.params.id);
             if(!product){
                 return res.status(404).send(baseHtml('<p> Product not found</p>'));
             }
@@ -254,11 +254,11 @@ const productController = {
     async deleteProduct (req,res){
         try{
             const formHtml=`
-            <form action="/dashboard/${product._id}/delete?_method=DELETE" method="POST">
+            <form action="/dashboard/${req.params.id}?_method=DELETE" method="POST">
                 <button type="submit">Eliminar</button>
             </form>`
 
-            const productDeleted = await productModel.findByIdAndDelete(req.params.id)
+            await productModel.findByIdAndDelete(req.params.id)
             res.redirect('/dashboard');
         }
         catch(error){
