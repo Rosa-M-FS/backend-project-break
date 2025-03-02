@@ -116,7 +116,7 @@ const productController = {
             </form>
 
             <script>
-                document.getElementById("categories").addEventListener("change",() =>{
+                function updateSubcat(){
                     const subcategorySelect = document.getElementById("subcategory");
                     const categories = this.value;
                     let subcategories = [];
