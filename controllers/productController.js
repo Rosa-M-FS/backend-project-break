@@ -34,11 +34,12 @@ const productController = {
             const categorias = ["Colección", "Accesorios", "Calzado", "Promociones"];
     
             res.send(baseHtml(`
-                <h1>Últimas novedades</h1>
+                <h1>Rose's Shop</h1>
+                <h2>Últimas novedades</h2>
                 ${getProductCards(novedades)}
     
                 <h2>Categorías</h2>
-                ${categorias.map(cat => `<a href="/products/${cat}">${cat}</a>`).join("<br>")}
+                ${categorias.map(cat => `<a href="/products/category/${cat}">${cat}</a>`).join("<br>")}
             `));
         } catch (error) {
             console.error("Error cargando la home:", error);
@@ -259,6 +260,27 @@ const productController = {
             res.status(500).send(baseHtml('<p>Error al eliminar producto</p>'));
         }
     },
+
+    async showProductsByCategory(req, res) {
+        try {
+            const category = req.params.category;
+            const products = await productModel.find({ categories: category });
+    
+            if (products.length === 0) {
+                return res.send(baseHtml(`<p>No hay productos en la categoría: ${category}</p>`));
+            }
+    
+            const productCards = getProductCards(products);
+            res.send(baseHtml(`
+                <h2>Productos en la categoría: ${category}</h2>
+                ${productCards}
+            `));
+        } catch (error) {
+            console.error('Error al obtener productos por categoría', error);
+            res.status(500).send(baseHtml('<p>Error al cargar productos por categoría</p>'));
+        }
+    },
+    
 }
 
 module.exports=productController;
