@@ -40,7 +40,7 @@ const productController = {
                 <h2>Últimas novedades</h2>
                 ${getProductCards(novedades)}
                 <div class="categorias">
-                    ${categorias.map(cat => `<a href="/products/category/${cat}">${cat}</a>`).join("<br>")}
+                    ${categorias.map(cat => `<a href="/products/categories/${cat}">${cat}</a>`).join("<br>")}
                 </div>
             `));
         } catch (error) {

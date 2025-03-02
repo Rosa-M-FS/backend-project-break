@@ -12,11 +12,11 @@ router.get('/products/:id',productController.showProductById);
 router.get('/dashboard',productController.showProducts);
 router.get('/dashboard/new',productController.showNewProduct);
 router.post('/dashboard',productController.createProduct);
-router.get('/dashboard/:productId',productController.showProductById);
-router.get('/dashboard/:productId/edit',productController.showEditProduct);
-router.put('/dashboard/:productId',productController.updateProduct);
-router.delete('/dashboard/:productId/delete',productController.deleteProduct);
-router.get('/products/category/:category', productController.showProductsByCategory);
-router.get('/products/promociones', productController.showPromotions);
+router.get('/dashboard/:id',productController.showProductById);
+router.get('/dashboard/:id/edit',productController.showEditProduct);
+router.put('/dashboard/:id',productController.updateProduct);
+router.delete('/dashboard/:id/delete',productController.deleteProduct);
+router.get('/products/categories/:category', productController.showProductsByCategory);
+router.get('/products/promotions', productController.showPromotions);
 
 module.exports=router;
