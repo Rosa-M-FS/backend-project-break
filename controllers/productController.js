@@ -298,11 +298,21 @@ const productController = {
             `));
         } catch (error) {
             console.error("Error cargando promociones:", error);
-            res.status(500).send("Error interno");
+            res.status(500).send("Error cargando promociones");
         }
-    }
+    },
     
-
+    async showDashboard (req, res){
+        try{
+            res.send('Bienvenido al Dashboard');
+        }
+        catch (error) {
+            console.error("Error cargando dashboard:", error);
+            res.status(500).send("Error cargando dashboard");
+        }
+    },
+      
+      
     
 }
 
