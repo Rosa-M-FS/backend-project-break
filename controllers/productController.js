@@ -76,7 +76,7 @@ const productController = {
                 <p><strong>Precio:</strong> $${product.price}</p>
                 <p><strong>Categoría:</strong> ${product.categories}</p>
                 <p><strong>Tallas disponibles:</strong> ${product.size.join(', ')}</p>
-                <p><strong>Nuevo:</strong> ${product.isNew ? 'Sí' : 'No'}</p>
+                 ${isDashboard ? `<p><strong>Nuevo:</strong> ${product.isNew ? 'Sí' : 'No'}</p>`:""}
             </div>
         `;
             res.send(baseHtml(productHtml));
