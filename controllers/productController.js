@@ -86,8 +86,8 @@ const productController = {
                 <label>Precio: <input type="number" name="price" required></label><br>
                 
                 <label for="categories">Categorías</label>
-                <select id="categories" name="categories">
-                    <option value="coleccion">Colección</option>
+                <select id="categories" name="categories" onchange="updateSubcat()">
+                    <option value="colección">Colección</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Calzado">Calzado</option>
                     <option value="Promociones">Promociones</option>
@@ -95,13 +95,11 @@ const productController = {
                 <br>
 
                 <label for="subcategory">Categoría</label>
-                <select name="subcategory" required>
-                    <option value="Vestido">Vestido</option>
-                    <option value="Falda">Falda</option>
-                    <option value="Camisa">Camisa</option>
-                    <option value="Camiseta">Camiseta</option>
-                    <option value="Pantalon">Pantalón</option>
+                <select id="subcategory" name="subcategory" required>
+
                 </select><br>
+
+                
                 <label for="size">Tallas</label><br>
                 <label><input type="checkbox" name="size" value="XS"> XS</label><br>
                 <label><input type="checkbox" name="size" value="S"> S</label><br>
@@ -116,6 +114,31 @@ const productController = {
                 
                 <button type="submit">Crear Producto</button>
             </form>
+
+            <script>
+                document.getElementById("categories").addEventListener("change", function() {
+                    const subcategorySelect = document.getElementById("subcategory");
+                    const categories = this.value;
+                    let subcategories = [];
+
+                    if (categories === "coleccion") {
+                        subcategories = ["Vestido", "Falda", "Camisa", "Camiseta", "Pantalón"];
+                    } else if (categories === "calzado") {
+                        subcategories = ["Botas", "Botines", "Zapatos Planos", "Zapatos Tacón", "Zapatillas"];
+                    } else if (categories === "accesorios") {
+                        subcategories = ["Cinturones", "Cabello", "Otros"];
+                    }
+
+                    subcategorySelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
+                    subcategories.forEach(sub => {
+                        const option = document.createElement("option");
+                        option.value = sub;
+                        option.textContent = sub;
+                        subcategorySelect.appendChild(option);
+                    });
+                });
+            </script>
+
         `;
         res.send(baseHtml(formHtml));
         }
