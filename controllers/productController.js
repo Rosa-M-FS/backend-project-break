@@ -66,7 +66,19 @@ const productController = {
             if(!product){
                 return res.status(404).send(baseHtml('<p> Product not found</p>'));
             }
-            res.send(baseHtml(product));
+
+            const productHtml = `
+            <div class="product-card">
+                <h2>${product.name}</h2>
+                <img src="${product.image}" alt="${product.name}" style="width: 200px;">
+                <p><strong>Descripción:</strong> ${product.description}</p>
+                <p><strong>Precio:</strong> $${product.price}</p>
+                <p><strong>Categoría:</strong> ${product.categories}</p>
+                <p><strong>Tallas disponibles:</strong> ${product.size.join(', ')}</p>
+                <p><strong>Nuevo:</strong> ${product.isNew ? 'Sí' : 'No'}</p>
+            </div>
+        `;
+            res.send(baseHtml(productHtml));
         }
         catch(error){
             console.log('Error al obtener producto',error);
