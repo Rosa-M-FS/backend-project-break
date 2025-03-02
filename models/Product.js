@@ -11,7 +11,8 @@ const ProductSchema=new mongoose.Schema({
         required:true
     },
     price: { type: Number, required: true },
-    isNew:{type: Boolean, default:false} //novedades
+    isNew:{type: Boolean, default:false}, //novedades
+    isPromotion:{type:Boolean, default:false},//promociones
 },{timestamps:true});
 
 module.exports=mongoose.model('Product',ProductSchema); 

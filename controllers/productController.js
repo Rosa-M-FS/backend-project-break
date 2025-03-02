@@ -103,7 +103,6 @@ const productController = {
                     <option value="colección">Colección</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Calzado">Calzado</option>
-                    <option value="Promociones">Promociones</option>
                 </select>
                 <br>
                
@@ -156,6 +155,7 @@ const productController = {
                     size,
                     image:images,
                     isNew,
+                    isPromotion,
                 });
             
                 res.redirect('/dashboard');
@@ -193,7 +193,7 @@ const productController = {
                 <label><input type="checkbox" name="categories" value="Promociones" 
                     ${product.categories.includes('Promociones') ? "checked" : ""}> Promociones</label><br>
 
-
+                <label><input type="checkbox" id="promotionCheckbox"> ¿Marcar como promoción?</label>
 
                 <label for="size">Tallas</label>
                 <label><input type="checkbox" name="size" value="XS" ${product.size.includes('XS') ? "checked" : ""}> XS</label><br>
@@ -229,7 +229,7 @@ const productController = {
                 const { name, description, price, categories, size } = req.body;
                 const images = req.files ? req.files.map(file => `/images/${file.filename}`) : [];
                 const isNew = req.body.isNew === 'on'; 
-
+                const isPromotion = req.body.isPromotion === 'on'; 
                 // Actualizar producto, pero solo actualizamos las imágenes si se han subido nuevas
                 const updatedData = {
                     name,
@@ -239,8 +239,9 @@ const productController = {
                     size,
                     ...(images.length > 0 && { image: images }),  // Solo actualizamos si hay nuevas imágenes
                     isNew,
+                    isPromotion,
                 };
-                const productUpadated=await productModel.findByIdAndUpdate(req.params.productId,updatedData,{new:true});
+                const productUpdated=await productModel.findByIdAndUpdate(req.params.productId,updatedData,{new:true});
                 res.redirect('/dashboard');
             }
             catch(error){
@@ -280,6 +281,23 @@ const productController = {
             res.status(500).send(baseHtml('<p>Error al cargar productos por categoría</p>'));
         }
     },
+    
+    async showPromotions(req, res) {
+        try {
+            const promotions = await productModel.find({ isPromotion: true });
+    
+            res.send(baseHtml(`
+                <h1>Productos en Promoción</h1>
+                ${getProductCards(promotions)}
+                <a href="/">Volver al inicio</a>
+            `));
+        } catch (error) {
+            console.error("Error cargando promociones:", error);
+            res.status(500).send("Error interno");
+        }
+    }
+    
+
     
 }
 

@@ -33,38 +33,38 @@ const getNavBar=(indashboard=false)=>{
             </div>
             
             <div class="dropdown">
-                <a href="/products/colección">Colección</a>
+                <a href="/products/category/colección">Colección</a>
                     <div class="dropdown-content">
-                        <a href="/products/novedades/camisas">Camisas</a>
-                        <a href="/products/novedades/vestidos">Vestidos</a>
-                        <a href="/products/novedades/faldas">Faldas</a>
-                        <a href="/products/novedades/pantalones">Pantalones</a>
-                        <a href="/products/novedades/camisetas">Camisetas</a>
-                        <a href="/products/novedades/tops">Tops</a>
+                        <a href="/products/category/colección/camisas">Camisas</a>
+                        <a href="/products/category/colección/vestidos">Vestidos</a>
+                        <a href="/products/category/colección/faldas">Faldas</a>
+                        <a href="/products/category/colección/pantalones">Pantalones</a>
+                        <a href="/products/category/colección/camisetas">Camisetas</a>
+                        <a href="/products/category/colección/tops">Tops</a>
                     </div>
             </div>
             
             <div class="dropdown">
-                <a href="/products/accesorios">Accesorios</a>
+                <a href="/products/category/accesorios">Accesorios</a>
                     <div class="dropdown-content">
-                        <a href="/products/accesorios/cinturones">Cinturones</a>
-                        <a href="/products/accesorios/cabello">Cabello</a>
-                        <a href="/products/accesorios/otros">Otros</a>
+                        <a href="/products/category/accesorios/cinturones">Cinturones</a>
+                        <a href="/products/category/accesorios/cabello">Cabello</a>
+                        <a href="/products/category/accesorios/otros">Otros</a>
                     </div>
             </div>
 
             <div class="dropdown">
-                <a href="/products/calzado">Calzado</a>
+                <a href="/products/category/calzado">Calzado</a>
                     <div class="dropdown-content">
-                        <a href="/products/calzado/botas">Botas</a>
-                        <a href="/products/calzado/botines">Botines</a>
-                        <a href="/products/calzado/zapatos-planos">Zapatos Planos</a>
-                        <a href="/products/calzado/zapatos-tacon">Zapatos Tacón</a>
-                        <a href="/products/calzado/zapatillas">Zapatillas</a>
+                        <a href="/products/category/calzado/botas">Botas</a>
+                        <a href="/products/category/calzado/botines">Botines</a>
+                        <a href="/products/category/calzado/zapatos-planos">Zapatos Planos</a>
+                        <a href="/products/category/calzado/zapatos-tacon">Zapatos Tacón</a>
+                        <a href="/products/category/calzado/zapatillas">Zapatillas</a>
                 </div>
             </div>
             
-            <a href="/products/promociones">Promociones</a>
+            <a href="/products/category/promociones">Promociones</a>
         ${indashboard ? `<a href="/dashboard/new" class="newP-btn"> Añadir Producto</a>`: ''}
         </nav>
         `;
