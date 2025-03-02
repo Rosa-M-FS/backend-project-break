@@ -40,7 +40,6 @@ const productController = {
                 <h2>Últimas novedades</h2>
                 ${getProductCards(novedades)}
                 <div class="categorias">
-                    <h2>Categorías</h2>
                     ${categorias.map(cat => `<a href="/products/category/${cat}">${cat}</a>`).join("<br>")}
                 </div>
             `));

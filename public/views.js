@@ -21,7 +21,7 @@ const getNavBar=(indashboard=false)=>{
             <a href="/">Home</a>
             
             <div class="dropdown">
-                <a href="/products/novedades">Novedades</a>
+                <a href="/products/Novedades">Novedades</a>
                     <div class="dropdown-content">
                         <a href="/products/novedades/camisas">Camisas</a>
                         <a href="/products/novedades/vestidos">Vestidos</a>
@@ -33,7 +33,7 @@ const getNavBar=(indashboard=false)=>{
             </div>
             
             <div class="dropdown">
-                <a href="/products/category/colección">Colección</a>
+                <a href="/products/category/Colección">Colección</a>
                     <div class="dropdown-content">
                         <a href="/products/category/colección/camisas">Camisas</a>
                         <a href="/products/category/colección/vestidos">Vestidos</a>
@@ -45,7 +45,7 @@ const getNavBar=(indashboard=false)=>{
             </div>
             
             <div class="dropdown">
-                <a href="/products/category/accesorios">Accesorios</a>
+                <a href="/products/category/Accesorios">Accesorios</a>
                     <div class="dropdown-content">
                         <a href="/products/category/accesorios/cinturones">Cinturones</a>
                         <a href="/products/category/accesorios/cabello">Cabello</a>
@@ -54,7 +54,7 @@ const getNavBar=(indashboard=false)=>{
             </div>
 
             <div class="dropdown">
-                <a href="/products/category/calzado">Calzado</a>
+                <a href="/products/category/Calzado">Calzado</a>
                     <div class="dropdown-content">
                         <a href="/products/category/calzado/botas">Botas</a>
                         <a href="/products/category/calzado/botines">Botines</a>

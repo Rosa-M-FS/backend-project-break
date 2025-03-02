@@ -16,7 +16,7 @@ router.get('/dashboard/:productId',productController.showProductById);
 router.get('/dashboard/:productId/edit',productController.showEditProduct);
 router.put('/dashboard/:productId',productController.updateProduct);
 router.delete('/dashboard/:productId/delete',productController.deleteProduct);
-router.get('/products/category/*', productController.showProductsByCategory);
+router.get('/products/category/:category', productController.showProductsByCategory);
 router.get('/products/promociones', productController.showPromotions);
 
 module.exports=router;
