@@ -116,16 +116,16 @@ const productController = {
             </form>
 
             <script>
-                document.getElementById("categories").addEventListener("change", function() {
+                document.getElementById("categories").addEventListener("change",() =>{
                     const subcategorySelect = document.getElementById("subcategory");
                     const categories = this.value;
                     let subcategories = [];
 
-                    if (categories === "coleccion") {
+                    if (categories === "Colección") {
                         subcategories = ["Vestido", "Falda", "Camisa", "Camiseta", "Pantalón"];
-                    } else if (categories === "calzado") {
+                    } else if (categories === "Calzado") {
                         subcategories = ["Botas", "Botines", "Zapatos Planos", "Zapatos Tacón", "Zapatillas"];
-                    } else if (categories === "accesorios") {
+                    } else if (categories === "Accesorios") {
                         subcategories = ["Cinturones", "Cabello", "Otros"];
                     }
 
