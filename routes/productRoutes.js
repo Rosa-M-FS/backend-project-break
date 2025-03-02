@@ -19,7 +19,6 @@ router.put('/dashboard/:productId',productController.updateProduct);
 router.delete('/dashboard/:productId/delete',productController.deleteProduct);
 router.get('/products/category/*', productController.showProductsByCategory);
 router.get('/products/promociones', productController.showPromotions);
-router.get('/dashboard', authMiddleware, showDashboard);
 
 
 module.exports=router;

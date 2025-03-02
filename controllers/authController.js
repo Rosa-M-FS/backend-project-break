@@ -7,5 +7,5 @@ const showDashboard =(req, res)=>{
         console.error("Error cargando dashboard:", error);
         res.status(500).send("Error cargando dashboard");
     }
-}
+};
 module.exports={ showDashboard }

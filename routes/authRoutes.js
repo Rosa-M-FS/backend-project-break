@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../config/firebase");
+const admin = require("../config/firebase");
 const { showDashboard } = require('../controllers/authController');
-const authMiddleware = require('../middlewares/authMiddleware');
 
 // 📌 Registro de usuario
 router.post("/register", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const userRecord = await auth.createUser({
+        const userRecord = await admin.auth.createUser({
             email,
             password,
         });
@@ -33,6 +32,6 @@ router.post("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
     res.status(200).send("Cierre de sesión exitoso");
 });
-router.get('/dashboard', authMiddleware, showDashboard);
+router.get('/dashboard',  showDashboard);
 
 module.exports = router;
