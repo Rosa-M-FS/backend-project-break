@@ -253,7 +253,12 @@ const productController = {
  
     async deleteProduct (req,res){
         try{
-            const productDeleted = await productModel.findByIdAndDelete(req.params.productId)
+            const formHtml=`
+            <form action="/dashboard/${product._id}/delete?_method=DELETE" method="POST">
+                <button type="submit">Eliminar</button>
+            </form>`
+
+            const productDeleted = await productModel.findByIdAndDelete(req.params.id)
             res.redirect('/dashboard');
         }
         catch(error){
