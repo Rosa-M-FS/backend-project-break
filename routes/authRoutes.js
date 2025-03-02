@@ -29,6 +29,15 @@ router.post("/login", async (req, res) => {
     const { idToken } = req.body;
     try {
         const decodedToken = await admin.auth.verifyIdToken(idToken);
+        const userRecord = await admin.auth().getUser(decodedToken.uid);
+        const isAdmin = userRecord.customClaims && userRecord.customClaims.admin;
+        res.cookie("token", idToken, { httpOnly: true });
+
+        if (isAdmin) {
+            res.redirect("/dashboard");
+        } else {
+            res.redirect("/home"); 
+        }
         res.status(200).json({ message: "Autenticado", uid: decodedToken.uid });
     } catch (error) {
         res.status(401).send("Token inválido");

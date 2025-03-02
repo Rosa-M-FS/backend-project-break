@@ -47,4 +47,15 @@ router.get('/products/promociones', productController.showPromotions);
 
 rutas del dashboard para el administrador con las rutas get se muestran los productos al igual que para la vista del visitante. Además se crean, editan y eliminan los productos. Además como se han añadido categorias para filtrar los distintos productos por tipo se ha incluido una ruta para mostrar los productos con dicho filtro y se ha añadido la opción de al editar el articulo poder ponerlo o no en otra categoría de promoción. 
 
+## Usuarios
+se ha establecido mediante firebase que el usuario administrador acceda al dashboard y el usuario normal al resto de rutas
+
+## admin 
+admin@roseshop.com
+adminroseshop
+
+## user 
+user@usuario.com
+userusuario
+
 
