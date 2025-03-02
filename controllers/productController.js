@@ -28,6 +28,25 @@ const uploadimages = multer({
 }).array('images',5);
 
 const productController = {
+    async showHome(req, res) {
+        try {
+            const novedades = await productModel.find({ isNew: true });
+            const categorias = ["Colección", "Accesorios", "Calzado", "Promociones"];
+    
+            res.send(baseHtml(`
+                <h1>Últimas novedades</h1>
+                ${getProductCards(novedades)}
+    
+                <h2>Categorías</h2>
+                ${categorias.map(cat => `<a href="/products/${cat}">${cat}</a>`).join("<br>")}
+            `));
+        } catch (error) {
+            console.error("Error cargando la home:", error);
+            res.status(500).send("Error interno");
+        }
+    },
+    
+
     async showProducts (req,res){
         try{
             const products = await productModel.find();
@@ -43,7 +62,7 @@ const productController = {
 
     async showProductById (req,res){
         try{
-            const product = await productModel.findById(req.params.productId);
+            const product = await productModel.findById(req.params._id);
             if(!product){
                 return res.status(404).send(baseHtml('<p> Product not found</p>'));
             }
@@ -67,12 +86,14 @@ const productController = {
                 <label>Precio: <input type="number" name="price" required></label><br>
                 
                 <label for="categories">Categorías</label>
-                <
-                <label><input type="checkbox" name="categories" value="Colección"> Colección</label><br>
-                <label><input type="checkbox" name="categories" value="Accesorios"> Accesorios</label><br>
-                <label><input type="checkbox" name="categories" value="Calzado"> Calzado</label><br>
-                <label><input type="checkbox" name="categories" value="Promociones"> Promociones</label><br>
-                
+                <select id="categories" name="categories">
+                    <option value="colección">Vestidos</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Calzado">Calzado</option>
+                    <option value="Promociones">Promociones</option>
+                </select>
+                <br>
+
                 <label for="subcategory">Categoría</label>
                 <select name="subcategory" required>
                     <option value="Vestido">Vestido</option>
@@ -112,12 +133,8 @@ const productController = {
             }
 
             try{
-                const {name,description, price, subcategory,size } = req.body;
-                const categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
+                const {name,description, price,categories, subcategory,size } = req.body;
 
-                if (!categories || categories.length === 0|| categories.includes(undefined)) {
-                    return res.status(400).send('<p>Debe seleccionar al menos una categoría para el producto.</p>');
-                }
                 const images = req.files ? req.files.map(file=>`/images/${file.filename}`) : [];
                 if (images.length===0) {
                     return res.status(400).send('<p>Debe subir al menos una imagen para el producto.</p>');
