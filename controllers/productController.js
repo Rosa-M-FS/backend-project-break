@@ -35,11 +35,14 @@ const productController = {
     
             res.send(baseHtml(`
                 <h1>Rose's Shop</h1>
+                <div class="novedades">
+                </div>
                 <h2>Últimas novedades</h2>
                 ${getProductCards(novedades)}
-    
-                <h2>Categorías</h2>
-                ${categorias.map(cat => `<a href="/products/category/${cat}">${cat}</a>`).join("<br>")}
+                <div class="categorias">
+                    <h2>Categorías</h2>
+                    ${categorias.map(cat => `<a href="/products/category/${cat}">${cat}</a>`).join("<br>")}
+                </div>
             `));
         } catch (error) {
             console.error("Error cargando la home:", error);
@@ -100,7 +103,7 @@ const productController = {
                 
                 <label for="categories">Categorías</label>
                 <select id="categories" name="categories" onchange="updateSubcat()">
-                    <option value="colección">Colección</option>
+                    <option value="Colección">Colección</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Calzado">Calzado</option>
                 </select>

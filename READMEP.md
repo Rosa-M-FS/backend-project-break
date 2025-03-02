@@ -1,6 +1,6 @@
 # Backend Project Break
 
-Este proyecto es una API REST desarrollada con Node.js y Express, que maneja un sistema de productos con conexión a MongoDB. Permite realizar operaciones CRUD sobre los productos y ofrece diferentes endpoints para interactuar con los datos.
+Este proyecto se centra en el desarrollo de una API para una tienda de ropa desarrollada con Node.js y Express, que maneja un sistema de productos con conexión a MongoDB. Permite realizar operaciones CRUD sobre los productos y ofrece diferentes endpoints para interactuar con los datos.
 
 ## Tecnologías utilizadas
 
@@ -9,6 +9,8 @@ Este proyecto es una API REST desarrollada con Node.js y Express, que maneja un 
 - **MongoDB** - Base de datos NoSQL para almacenar la información de los productos
 - **Mongoose** - ODM para modelar los datos en MongoDB
 - **Render** - Servicio en la nube para el despliegue del backend
+- **Firebase** - Servicio para gestionar autenticación
+- **Multer** - Gestión de imágenes
 
 ## Instalación y configuración
 
