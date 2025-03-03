@@ -2,7 +2,7 @@ const express = require ('express');
 const router = express.Router();  
 const productModel=require('../models/Product')
 const productController = require('../controllers/productController');
-const {baseHtml,getProductCards,getNavBar}=require('../public/views');
+const {baseHtml,getProductCards,getNavBar}= require('../public/views');
 //
 router.get('/', productController.showHome);
 //visitor routes

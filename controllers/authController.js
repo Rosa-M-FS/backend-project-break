@@ -1,5 +1,5 @@
 //esto es bonus
-const showDashboard =(req, res)=>{
+const showDashboard=(req, res)=>{
     try{
         res.send('Bienvenido al Dashboard');
     }

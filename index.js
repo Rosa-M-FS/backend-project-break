@@ -2,7 +2,6 @@ require('dotenv').config();//manejar variables de entorno
 const express = require ('express');//crear servidor
 const cors = require('cors');//peticiones front
 const mongoose=require('mongoose');//base datos
-const cookieParser = require("cookie-parser");
 
 const methodOverride = require('method-override');
 const authRoutes = require("./routes/authRoutes");

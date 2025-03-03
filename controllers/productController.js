@@ -170,7 +170,7 @@ const productController = {
     });
 },
 
-    async showEditProduct (req,res){
+    async showEditProduct(req,res){
         try{
             const product = await productModel.findById(req.params.id);
             if(!product){

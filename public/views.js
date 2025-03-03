@@ -117,7 +117,7 @@ const baseHtml=(content,inDashboard=false)=>{
         </footer>
     </body>
     </html>
-    `;
+    ` ;
 }
 
 module.exports = {baseHtml,getNavBar,getProductCards};

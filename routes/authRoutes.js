@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
 });
 
 //  Login 
-router.post("/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
     const { idToken } = req.body;
     try {
         const decodedToken = await admin.auth.verifyIdToken(idToken);
@@ -45,7 +45,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Logout 
-router.post("/logout", (req, res) => {
+router.post("/logout",(req, res) => {
     res.status(200).send("Cierre de sesión exitoso");
 });
 router.get('/dashboard',  showDashboard);

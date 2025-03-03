@@ -41,17 +41,6 @@ body {
     width: 150px;
     text-align: center;
 }
-.product-container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
-}
-
-.product-card {
-    width: 250px; 
-    flex-grow: 1; 
-}
 
 /* navBar */
 nav {
