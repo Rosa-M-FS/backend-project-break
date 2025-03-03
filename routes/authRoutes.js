@@ -6,7 +6,7 @@ const path = require("path");
 const { showDashboard } = require('../controllers/authController');
 
 //login pag
-router.get("/auth/login", (req, res) => {
+router.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
