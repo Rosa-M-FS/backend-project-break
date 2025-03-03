@@ -3,7 +3,7 @@ const admin = require('../config/firebase');
 
 const authMiddleware = async (req, res, next) => {
     const token= req.cookies.token;
-    if (!token) return res.redirect('/login');
+    if (!token) return res.redirect('/auth/login');
 
     try {
         const decodedToken = await admin.auth().verifyIdToken(token);
@@ -17,7 +17,7 @@ const authMiddleware = async (req, res, next) => {
         }
         next();
     } catch (error) {
-        res.redirect('/login');
+        res.redirect('/auth/login');
     }
 };
 
