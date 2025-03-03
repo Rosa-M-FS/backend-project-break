@@ -6,12 +6,12 @@ const path = require("path");
 const { showDashboard } = require('../controllers/authController');
 
 //login pag
-router.get("/login", (req, res) => {
+router.get("/auth/login", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
 //Registro de usuario
-router.post("/register", async (req, res) => {
+router.post("/auth/register", async (req, res) => {
     const { email, password } = req.body;
     try {
         const userRecord = await admin.auth.createUser({
@@ -45,7 +45,7 @@ router.post("/auth/login", async (req, res) => {
 });
 
 // Logout 
-router.post("/logout",(req, res) => {
+router.post("/auth/logout",(req, res) => {
     res.status(200).send("Cierre de sesión exitoso");
 });
 router.get('/dashboard',  showDashboard);
